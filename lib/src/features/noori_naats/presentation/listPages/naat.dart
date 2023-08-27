@@ -15,9 +15,9 @@ class NaatList extends StatefulWidget {
 class _NaatListState extends State<NaatList> {
   @override
   Widget build(BuildContext context) {
-    List<Kalam> naatlist = [];
-    Future<List<Kalam>> getData() async {
-      naatlist = await KalamRepositoryImpl(context).getAllKalams();
+    List<Naat> naatlist = [];
+    Future<List<Naat>> getData() async {
+      naatlist = await KalamRepositoryImpl(context).getAllNaats();
       if (naatlist.hashCode != Null) {
         return naatlist;
       }

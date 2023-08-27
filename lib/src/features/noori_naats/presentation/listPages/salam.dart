@@ -15,9 +15,9 @@ class SalamList extends StatefulWidget {
 class _SalamListState extends State<SalamList> {
   @override
   Widget build(BuildContext context) {
-    List<Kalam> salamlist = [];
-    Future<List<Kalam>> getData() async {
-      salamlist = await KalamRepositoryImpl(context).getAllKalams();
+    List<Salam> salamlist = [];
+    Future<List<Salam>> getData() async {
+      salamlist = await KalamRepositoryImpl(context).getAllSalams();
       if (salamlist.hashCode != Null) {
         return salamlist;
       }
@@ -67,11 +67,10 @@ class _SalamListState extends State<SalamList> {
                     ),
                   );
                 },
-                separatorBuilder: (BuildContext context, int index) =>
-                    Divider(
-                      color: Colors.blueGrey,
-                      thickness: 1,
-                    ),
+                separatorBuilder: (BuildContext context, int index) => Divider(
+                  color: Colors.blueGrey,
+                  thickness: 1,
+                ),
               );
             }
           },

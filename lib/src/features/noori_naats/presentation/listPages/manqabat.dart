@@ -15,9 +15,9 @@ class ManqabatList extends StatefulWidget {
 class _ManqabatListState extends State<ManqabatList> {
   @override
   Widget build(BuildContext context) {
-    List<Kalam> manqabatlist = [];
-    Future<List<Kalam>> getData() async {
-      manqabatlist = await KalamRepositoryImpl(context).getAllKalams();
+    List<Manqabat> manqabatlist = [];
+    Future<List<Manqabat>> getData() async {
+      manqabatlist = await KalamRepositoryImpl(context).getAllManqabats();
       if (manqabatlist.hashCode != Null) {
         return manqabatlist;
       }

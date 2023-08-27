@@ -75,12 +75,14 @@ class _KalamListState extends State<KalamList> {
 
   TabBar _tabBar() {
     return TabBar(
-      unselectedLabelColor: yellowColor,
-      padding: EdgeInsets.fromLTRB(4, 0, 4, 8),
-      indicator: BoxDecoration(
-        borderRadius: BorderRadius.circular(50),
-        color: yellowColor,
-      ),
+      labelColor: yellowColor,
+      unselectedLabelColor: Colors.white,
+      indicatorWeight: 5,
+      indicatorColor: yellowColor,
+      // indicator: BoxDecoration(
+      //   borderRadius: BorderRadius.circular(50),
+      //   color: yellowColor,
+      // ),
       tabs: tabs,
     );
   }

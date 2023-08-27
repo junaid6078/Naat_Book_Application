@@ -15,19 +15,10 @@ class HamdList extends StatefulWidget {
 class _HamdListState extends State<HamdList> {
   @override
   Widget build(BuildContext context) {
-    List<Kalam> hamdlist = [];
-    List<Kalam> list = [];
-
-    Future<List<Kalam>> getData() async {
-      hamdlist = await KalamRepositoryImpl(context).getAllKalams();
-      if (hamdlist.hashCode != Null) {
-        hamdlist
-            .where((Kalam) => Kalam.typeEng.toLowerCase().contains("hamd", 0))
-            .toList();
-        list = hamdlist;
-        print(list.length);
-        print(hamdlist.length);
-      }
+    List<Hamd> hamdlist = [];
+    List<Hamd> list = [];
+    Future<List<Hamd>> getData() async {
+      hamdlist = await KalamRepositoryImpl(context).getAllHamds();
       return hamdlist;
     }
 

@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:book/src/features/noori_naats/presentation/widgets/favouriteKalam.dart';
 import 'package:flutter/material.dart';
 import '../utils/colors.dart';
 import 'kalam_list_screen.dart';
@@ -108,29 +109,41 @@ class _NaatListPageState extends State<NaatListPage> {
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
-        children: const <Widget>[
+        children: <Widget>[
           DrawerHeader(
             decoration: BoxDecoration(
-              color: Colors.black,
+              color: blueColor,
             ),
-            child: Text(
-              'Menu',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
+            child: Image(
+              image: AssetImage("assets/images/logo_animated.gif"),
             ),
           ),
           ListTile(
-            leading: Icon(Icons.message),
-            title: Text('Messages'),
-          ),
-          ListTile(
-            leading: Icon(Icons.account_circle),
+            leading: Icon(
+              Icons.account_circle,
+              color: blueColor,
+            ),
             title: Text('Profile'),
           ),
           ListTile(
-            leading: Icon(Icons.settings),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => FavouriteKalam(),
+                ),
+              );
+            },
+            leading: Icon(
+              Icons.favorite,
+              color: Colors.red,
+            ),
+            title: Text('Favourite'),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.settings,
+              color: blueColor,
+            ),
             title: Text('Settings'),
           ),
         ],

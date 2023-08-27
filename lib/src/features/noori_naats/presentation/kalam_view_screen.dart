@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:book/src/features/noori_naats/presentation/listPages/naat.dart';
 import 'package:book/src/features/noori_naats/presentation/widgets/kalam_line.dart';
 import 'package:flutter/material.dart';
 import '../utils/colors.dart';
@@ -18,14 +19,8 @@ class NooriNaatsApp extends StatefulWidget {
 
 class _NooriNaatsAppState extends State<NooriNaatsApp> {
   bool _isFavorited = false;
+  List favouriteKalam = [];
 
-  void _toggleFavorite() {
-    setState(() {
-      _isFavorited = !_isFavorited;
-    });
-  }
-
-  //List<Kalam> _kalams = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,6 +97,15 @@ class _NooriNaatsAppState extends State<NooriNaatsApp> {
       text: line,
       color: Colors.transparent,
     );
+  }
+
+  void _toggleFavorite() {
+    setState(() {
+      _isFavorited = !_isFavorited;
+      if (_isFavorited) {
+        favouriteKalam.add(this);
+      }
+    });
   }
 
   AppBar _buildAppBar() {

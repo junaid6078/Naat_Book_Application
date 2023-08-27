@@ -53,7 +53,7 @@ class KalamPage extends StatelessWidget {
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 28,
-                color: primaryTextColor),
+                color: Colors.black),
             textAlign: TextAlign.center,
           ),
           AutoSizeText(

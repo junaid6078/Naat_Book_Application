@@ -1,5 +1,3 @@
-import 'package:book/src/features/noori_naats/domain/kalam_repository.dart';
-import 'package:book/src/features/noori_naats/presentation/kalam_view_screen.dart';
 import 'package:book/src/features/noori_naats/presentation/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:book/src/features/noori_naats/presentation/home_View.dart';

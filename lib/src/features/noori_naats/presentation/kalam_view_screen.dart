@@ -1,100 +1,131 @@
-import 'package:book/src/features/noori_naats/domain/kalam_repository.dart';
-import 'package:book/src/features/noori_naats/presentation/search_kalam_screen.dart';
-import 'package:book/src/features/noori_naats/presentation/widgets/kalam_page.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:book/src/features/noori_naats/presentation/widgets/kalam_line.dart';
 import 'package:flutter/material.dart';
-
-import '../domain/kalam.dart';
 import '../utils/colors.dart';
 
 class NooriNaatsApp extends StatefulWidget {
-  final KalamRepository kalamRepository;
+  final String type;
+  final String subject;
+  final String poet;
+  final List<String> lines;
 
-  NooriNaatsApp(this.kalamRepository);
+  const NooriNaatsApp(this.type, this.subject, this.poet, this.lines,
+      {super.key});
 
   @override
-  _NooriNaatsAppState createState() => _NooriNaatsAppState();
+  State<NooriNaatsApp> createState() => _NooriNaatsAppState();
 }
 
 class _NooriNaatsAppState extends State<NooriNaatsApp> {
-  PageController _controller = PageController(
-    initialPage: 0,
-  );
-  List<Kalam> _kalams = [];
+  bool _isFavorited = false;
 
+  void _toggleFavorite() {
+    setState(() {
+      _isFavorited = !_isFavorited;
+    });
+  }
+
+  //List<Kalam> _kalams = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: _buildAppBar(),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            colorFilter: new ColorFilter.mode(Colors.lightBlueAccent, BlendMode.overlay),
-            image: AssetImage("assets/images/page_background.jpg"),
-            fit: BoxFit.cover,
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/images/kalambg.jpg"),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: FutureBuilder<List<Kalam>>(
-              initialData: [],
-              future: widget.kalamRepository.getAllKalams(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  final kalams = snapshot.data as List<Kalam>;
-                  return Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      child: PageView.builder(
-                        reverse: true,
-                        scrollDirection: Axis.horizontal,
-                        controller: _controller,
-                        itemBuilder: (context, position) {
-                          Kalam kalam = kalams[position];
-                          return _buildPage(kalam);
-                        },
-                        itemCount: kalams.length,
-                      ),
+          SafeArea(
+            child: Column(
+              children: [
+                Container(
+                  alignment: AlignmentDirectional.topCenter,
+                  decoration: BoxDecoration(
+                    color: blueColor,
+                    borderRadius: const BorderRadius.vertical(
+                      bottom: Radius.circular(40.0),
                     ),
-                  );
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              }),
-        ),
+                  ),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 4.0,
+                      ),
+                      AutoSizeText(
+                        widget.poet,
+                        style: TextStyle(fontSize: 24, color: yellowColor),
+                        textAlign: TextAlign.center,
+                      ),
+                      AutoSizeText(
+                        widget.subject,
+                        style: TextStyle(fontSize: 20, color: yellowColor),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(
+                        height: 4.0,
+                      )
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    color: Colors.transparent,
+                    padding: const EdgeInsets.all(12),
+                    child: ListView.builder(
+                      padding: const EdgeInsets.all(2),
+                      itemCount: widget.lines.length,
+                      physics: const ScrollPhysics(),
+                      itemBuilder: (context, position) {
+                        return _buildLineContainer(position);
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
+    );
+  }
+
+  Widget _buildLineContainer(int position) {
+    String line = widget.lines[position];
+    return KalamLine(
+      height: 40,
+      text: line,
+      color: Colors.transparent,
     );
   }
 
   AppBar _buildAppBar() {
     return AppBar(
-      title: Text(
-        " نعتیں",
-        style: TextStyle(fontSize: 32, color: Color.fromARGB(255, 247, 190, 25)),
-      ),
-      centerTitle: true,
-      elevation: 8,
-      shadowColor: Colors.black,
-      backgroundColor: Color.fromARGB(255, 26, 30, 50),
       actions: [
         IconButton(
-          onPressed: () {
-            showSearch(context: context, delegate: SearchKalams(_kalams));
-          },
-          icon: Icon(Icons.search, size: 28,),
-          color: Color.fromARGB(255, 247, 190, 25),
-        )
+          icon: Icon(
+            _isFavorited ? Icons.favorite : Icons.favorite_border,
+            color: _isFavorited ? Colors.red : Colors.red,
+            size: 28,
+          ),
+          onPressed: _toggleFavorite,
+        ),
       ],
+      leading: BackButton(
+        color: yellowColor,
+      ),
+      title: Text(
+        widget.type,
+        style: TextStyle(fontSize: 32, color: yellowColor),
+      ),
+      centerTitle: true,
+      elevation: 0,
+      backgroundColor: blueColor,
     );
   }
-
-  Widget _buildPage(Kalam kalam) {
-    return KalamPage(kalam: kalam);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
 }
-

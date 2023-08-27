@@ -1,8 +1,7 @@
-import 'dart:convert';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:book/src/features/noori_naats/domain/kalam_repository.dart';
-import 'package:book/src/features/noori_naats/presentation/kalam_view_screen.dart';
 import 'package:flutter/material.dart';
+import '../utils/colors.dart';
+import 'kalam_list_screen.dart';
 
 class NaatListPage extends StatefulWidget {
   const NaatListPage({super.key});
@@ -12,94 +11,77 @@ class NaatListPage extends StatefulWidget {
 }
 
 class _NaatListPageState extends State<NaatListPage> {
-  // List<Kalam> kalamName = [];
-  // Future<List<Kalam>> getData() async {
-  //   kalamName = await KalamRepositoryImpl(context).getAllKalams();
-  //   // ignore: unrelated_type_equality_checks
-  //   if (kalamName.hashCode != Null) {
-  //     return kalamName;
-  //   }
-  //   return kalamName;
-  // }
-
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
+    final heigth = MediaQuery.of(context).size.height;
+    final weigth = MediaQuery.of(context).size.width;
     return Scaffold(
-//      drawer: _drawer(),
-      appBar: _buildAppBar(),
+      key: _key,
+      drawer: _drawer(),
+      //appBar: _buildAppBar(),
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
-                colorFilter: new ColorFilter.mode(
-                  Colors.indigoAccent,
-                  BlendMode.dstOver,
-                ),
-                image: AssetImage("assets/images/splash_image.jpg"),
+                image: AssetImage("assets/images/homebg1.jpg"),
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Color.fromRGBO(26, 30, 50, 80),
+          Positioned(
+            top: heigth * 0.05,
+            width: weigth * 0.2,
+            child: IconButton(
+              onPressed: () {
+                _key.currentState!.openDrawer();
+              },
+              icon: const Icon(
+                Icons.menu_rounded,
+                size: 32,
+                color: Colors.white,
+              ),
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => NooriNaatsApp(
-                    KalamRepositoryImpl(context),
+          Positioned(
+            top: heigth * 0.3,
+            left: weigth * 0.4,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const KalamList(),
                   ),
+                );
+              },
+              child: const Text(
+                "نعتیں",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
                 ),
-              );
-            },
-            child: Center(
-              // child: Container(
-              //   height: 300,
-              //   width: 500,
-              //   decoration: BoxDecoration(
-              //     borderRadius: BorderRadius.circular(36),
-              //   ),
-              //   child: Card(
-              //     elevation: 8,
-              //     color: Color.fromARGB(255, 26, 30, 50),
-              //     margin: EdgeInsets.all(20),
-              //     child: Center(
-              //       child: Text(
-              //         "نعتیں",
-              //         style: TextStyle(
-              //           fontSize: 36,
-              //           fontWeight: FontWeight.bold,
-              //           color: Color.fromARGB(255, 247, 190, 25),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-
-
-              child: Container(
-                width: 350,
-                height: 200,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.white,
-                    width: 4,
+              ),
+            ),
+          ),
+          Positioned(
+            top: heigth * 0.5,
+            left: weigth * 0.4,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const KalamList(),
                   ),
-                  borderRadius: BorderRadius.circular(24),
-                ),
-                child: Center(
-                  child: Text(
-                    "نعتیں",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 247, 190, 25),
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                );
+              },
+              child: const Text(
+                "کتابیں",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -114,15 +96,11 @@ class _NaatListPageState extends State<NaatListPage> {
       title: AutoSizeText(
         "راہِ نجات",
         style: TextStyle(
-          fontSize: 32,
-          color: Color.fromARGB(255, 247, 190, 25),
-          fontWeight: FontWeight.bold
-        ),
+            fontSize: 32, color: blueColor, fontWeight: FontWeight.bold),
       ),
       centerTitle: true,
-      elevation: 8,
-      shadowColor: Colors.black,
-      backgroundColor: Color.fromARGB(255, 26, 30, 50),
+      elevation: 0,
+      backgroundColor: const Color.fromARGB(100, 9, 9, 121),
     );
   }
 

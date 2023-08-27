@@ -3,9 +3,7 @@ import 'package:book/src/features/noori_naats/presentation/listPages/hamd.dart';
 import 'package:book/src/features/noori_naats/presentation/listPages/manqabat.dart';
 import 'package:book/src/features/noori_naats/presentation/listPages/naat.dart';
 import 'package:book/src/features/noori_naats/presentation/listPages/salam.dart';
-import 'package:book/src/features/noori_naats/presentation/search_kalam_screen.dart';
 import 'package:flutter/material.dart';
-import '../domain/kalam.dart';
 import '../utils/colors.dart';
 
 class KalamList extends StatefulWidget {
@@ -22,7 +20,7 @@ class _KalamListState extends State<KalamList> {
     Tab(text: 'Manqabat'),
     Tab(text: 'Salam'),
   ];
-  final List<Kalam> _kalams = [];
+  //final List<Kalam> _kalams = [];
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -30,8 +28,8 @@ class _KalamListState extends State<KalamList> {
       length: tabs.length,
       child: Scaffold(
         appBar: _buildAppBar(),
-        floatingActionButton: _floatingActionButton(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        // floatingActionButton: _floatingActionButton(),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Stack(
           children: [
             Container(
@@ -87,23 +85,23 @@ class _KalamListState extends State<KalamList> {
     );
   }
 
-  FloatingActionButton _floatingActionButton() {
-    return FloatingActionButton(
-      backgroundColor: blueColor,
-      onPressed: () {
-        showSearch(context: context, delegate: SearchKalams(_kalams));
-      },
-      child: Icon(
-        Icons.search,
-        color: yellowColor,
-      ),
-      // label: const Text(
-      //   "Search",
-      //   style: TextStyle(
-      //     fontSize: 20,
-      //     color: Color.fromARGB(255, 247, 190, 25),
-      //   ),
-      // ),
-    );
-  }
+  // FloatingActionButton _floatingActionButton() {
+  //   return FloatingActionButton(
+  //     backgroundColor: blueColor,
+  //     onPressed: () {
+  //       showSearch(context: context, delegate: SearchKalams(_kalams));
+  //     },
+  //     child: Icon(
+  //       Icons.search,
+  //       color: yellowColor,
+  //     ),
+  //     // label: const Text(
+  //     //   "Search",
+  //     //   style: TextStyle(
+  //     //     fontSize: 20,
+  //     //     color: Color.fromARGB(255, 247, 190, 25),
+  //     //   ),
+  //     // ),
+  //   );
+  // }
 }

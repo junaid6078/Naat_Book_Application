@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:book/src/features/noori_naats/domain/naat/naatDomain.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../domain/kalam.dart';
-import '../../domain/kalam_repository.dart';
+import '../../domain/naat/naat_repository.dart';
 import '../kalam_view_screen.dart';
 
 class NaatList extends StatefulWidget {
@@ -17,7 +17,7 @@ class _NaatListState extends State<NaatList> {
   Widget build(BuildContext context) {
     List<Naat> naatlist = [];
     Future<List<Naat>> getData() async {
-      naatlist = await KalamRepositoryImpl(context).getAllNaats();
+      naatlist = await NaatRepositoryImpl(context).getAllNaats();
       if (naatlist.hashCode != Null) {
         return naatlist;
       }

@@ -6,7 +6,7 @@ import '../../utils/colors.dart';
 import 'kalam_line.dart';
 
 class KalamPage extends StatelessWidget {
-  final Kalam kalam;
+  final kalam;
 
   const KalamPage({Key? key, required this.kalam}) : super(key: key);
 

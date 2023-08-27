@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../domain/kalam.dart';
-import '../../domain/kalam_repository.dart';
+import '../../domain/salam/salamDomain.dart';
+import '../../domain/salam/salam_repository.dart';
 import '../kalam_view_screen.dart';
 
 class SalamList extends StatefulWidget {
@@ -17,7 +17,7 @@ class _SalamListState extends State<SalamList> {
   Widget build(BuildContext context) {
     List<Salam> salamlist = [];
     Future<List<Salam>> getData() async {
-      salamlist = await KalamRepositoryImpl(context).getAllSalams();
+      salamlist = await SalamRepositoryImpl(context).getAllSalams();
       if (salamlist.hashCode != Null) {
         return salamlist;
       }

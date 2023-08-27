@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:book/src/features/noori_naats/domain/manqabat/manqabarDomain.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../domain/kalam.dart';
-import '../../domain/kalam_repository.dart';
+import '../../domain/manqabat/manqabat_repository.dart';
 import '../kalam_view_screen.dart';
 
 class ManqabatList extends StatefulWidget {
@@ -17,7 +17,7 @@ class _ManqabatListState extends State<ManqabatList> {
   Widget build(BuildContext context) {
     List<Manqabat> manqabatlist = [];
     Future<List<Manqabat>> getData() async {
-      manqabatlist = await KalamRepositoryImpl(context).getAllManqabats();
+      manqabatlist = await ManqabatRepositoryImpl(context).getAllManqabats();
       if (manqabatlist.hashCode != Null) {
         return manqabatlist;
       }

@@ -1,8 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../domain/kalam.dart';
-import '../../domain/kalam_repository.dart';
+import '../../domain/hamd/hamdDomain.dart';
+import '../../domain/hamd/hamd_repository.dart';
 import '../kalam_view_screen.dart';
 
 class HamdList extends StatefulWidget {
@@ -16,9 +16,8 @@ class _HamdListState extends State<HamdList> {
   @override
   Widget build(BuildContext context) {
     List<Hamd> hamdlist = [];
-    List<Hamd> list = [];
     Future<List<Hamd>> getData() async {
-      hamdlist = await KalamRepositoryImpl(context).getAllHamds();
+      hamdlist = await HamdRepositoryImpl(context).getAllHamds();
       return hamdlist;
     }
 
@@ -27,7 +26,7 @@ class _HamdListState extends State<HamdList> {
       body: SafeArea(
         child: FutureBuilder(
           future: getData(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
+          builder: (BuildContext context, snapshot) {
             if (!snapshot.hasData) {
               return const Center(
                 child: CircularProgressIndicator(),
@@ -41,10 +40,10 @@ class _HamdListState extends State<HamdList> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => NooriNaatsApp(
-                            list[index].type.toString(),
-                            list[index].subject.toString(),
-                            list[index].poet.toString(),
-                            list[index].lines,
+                            hamdlist[index].type.toString(),
+                            hamdlist[index].subject.toString(),
+                            hamdlist[index].poet.toString(),
+                            hamdlist[index].lines,
                           ),
                         ),
                       );
@@ -54,7 +53,7 @@ class _HamdListState extends State<HamdList> {
                       padding: const EdgeInsets.all(2.0),
                       margin: const EdgeInsets.all(2.0),
                       child: AutoSizeText(
-                        list[index].lines.first,
+                        hamdlist[index].lines.first,
                         style: const TextStyle(
                           fontSize: 20,
                           color: Color.fromARGB(255, 26, 30, 50),

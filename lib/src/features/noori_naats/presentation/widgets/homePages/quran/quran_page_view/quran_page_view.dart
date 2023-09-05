@@ -5,8 +5,7 @@ import '../../../../../utils/colors.dart';
 
 class QuranPageView extends StatefulWidget {
   final int surahNumber;
-  const QuranPageView(
-      {Key? key, required this.surahNumber});
+  const QuranPageView({Key? key, required this.surahNumber});
 
   @override
   State<QuranPageView> createState() => _QuranPageViewState();
@@ -52,130 +51,141 @@ class _QuranPageViewState extends State<QuranPageView> {
                 },
               );
             },
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings),
           ),
         ],
         backgroundColor: backgroundColor,
         centerTitle: true,
         title: Text(
-          quran.getSurahName(widget.surahNumber+1),
+          quran.getSurahName(widget.surahNumber + 1),
           style: TextStyle(
             color: blueColor,
           ),
         ),
       ),
-      body: Column(
-        children: [
-          Container(
-            height: heigth * 0.25,
-            width: width * 1,
-            margin: EdgeInsets.fromLTRB(8, 4, 8, 4),
-            decoration: BoxDecoration(
-              color: blueColor,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  margin: EdgeInsets.fromLTRB(24, 24, 0, 24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      AutoSizeText(
-                        quran.getSurahName(widget.surahNumber + 1),
-                        style: TextStyle(
-                          color: lightBlue,
-                          fontSize: 36,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      AutoSizeText(
-                        quran.getSurahNameEnglish(widget.surahNumber + 1),
-                        style: TextStyle(
-                          color: lightBlue,
-                          fontSize: heigth * 0.03,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      AutoSizeText(
-                        "${quran.getPlaceOfRevelation(widget.surahNumber + 1)} Surah",
-                        style: TextStyle(
-                          color: lightBlue,
-                        ),
-                      ),
-                      AutoSizeText(
-                        "${quran.getVerseCount(widget.surahNumber + 1).toString()} Verses",
-                        style: TextStyle(
-                          color: lightBlue,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: EdgeInsets.fromLTRB(0, 24, 24, 24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      AutoSizeText(
-                        textAlign: TextAlign.end,
-                        quran.getSurahNameArabic(widget.surahNumber + 1),
-                        style: TextStyle(
-                          fontSize: width * 0.1,
-                          color: lightBlue,
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                        decoration: BoxDecoration(
-                          color: lightBlue,
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child: TextButton.icon(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.play_arrow_rounded,
-                            size: width * 0.08,
-                            color: blueColor,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              height: heigth * 0.25,
+              width: width * 1,
+              margin: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+              decoration: BoxDecoration(
+                color: blueColor,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(24, 24, 0, 24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        AutoSizeText(
+                          quran.getSurahName(widget.surahNumber + 1),
+                          style: TextStyle(
+                            color: lightBlue,
+                            fontSize: 36,
                           ),
-                          label: Text(
-                            "play",
-                            style: TextStyle(
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        AutoSizeText(
+                          quran.getSurahNameEnglish(widget.surahNumber + 1),
+                          style: TextStyle(
+                            color: lightBlue,
+                            fontSize: heigth * 0.03,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        AutoSizeText(
+                          "${quran.getPlaceOfRevelation(widget.surahNumber + 1)} Surah",
+                          style: TextStyle(
+                            color: lightBlue,
+                          ),
+                        ),
+                        AutoSizeText(
+                          "${quran.getVerseCount(widget.surahNumber + 1).toString()} Verses",
+                          style: TextStyle(
+                            color: lightBlue,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(0, 24, 24, 24),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        AutoSizeText(
+                          textAlign: TextAlign.end,
+                          quran.getSurahNameArabic(widget.surahNumber + 1),
+                          style: TextStyle(
+                            fontSize: width * 0.1,
+                            color: lightBlue,
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                          decoration: BoxDecoration(
+                            color: lightBlue,
+                            borderRadius: BorderRadius.circular(24),
+                          ),
+                          child: TextButton.icon(
+                            onPressed: () {},
+                            icon: Icon(
+                              Icons.play_arrow_rounded,
+                              size: width * 0.08,
                               color: blueColor,
-                              fontSize: width * 0.05,
+                            ),
+                            label: Text(
+                              "play",
+                              style: TextStyle(
+                                color: blueColor,
+                                fontSize: width * 0.05,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.fromLTRB(12, 8, 12, 8),
-            height: heigth * 0.1,
-            width: width * 0.7,
-            // decoration: BoxDecoration(
-            //   color: yellowColor,
-            // ),
-            child: AutoSizeText(
-              textAlign: TextAlign.center,
-              quran.basmala,
-              style: TextStyle(
-                fontSize: width * 0.06,
+                ],
               ),
             ),
-          ),
-        ],
+            Container(
+              margin: const EdgeInsets.fromLTRB(12, 8, 12, 8),
+              height: heigth * 0.05,
+              width: width * 0.7,
+              decoration: BoxDecoration(
+                color: yellowColor,
+              ),
+              child: AutoSizeText(
+                textAlign: TextAlign.center,
+                quran.basmala,
+                style: TextStyle(
+                  fontSize: width * 0.06,
+                ),
+              ),
+            ),
+            Container(
+              height: heigth * 0.3,
+              width: width * 1,
+              margin: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+              // decoration: BoxDecoration(
+              //   color: yellowColor,
+              // ),
+              child: Card(),
+            ),
+          ],
+        ),
       ),
     );
   }

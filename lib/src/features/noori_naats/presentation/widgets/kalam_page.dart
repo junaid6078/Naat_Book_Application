@@ -12,21 +12,19 @@ class KalamPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          _buildKalamHeading(kalam.type, kalam.subject, kalam.poet),
-          Expanded(
-            child: ListView.builder(
-              itemCount: kalam.lines.length,
-              physics: ScrollPhysics(),
-              itemBuilder: (context, position) {
-                return _buildLineContainer(position);
-              },
-            ),
+    return Column(
+      children: [
+        _buildKalamHeading(kalam.type, kalam.subject, kalam.poet),
+        Expanded(
+          child: ListView.builder(
+            itemCount: kalam.lines.length,
+            physics: ScrollPhysics(),
+            itemBuilder: (context, position) {
+              return _buildLineContainer(position);
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

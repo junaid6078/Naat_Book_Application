@@ -1,8 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:book/src/features/noori_naats/presentation/widgets/favouriteKalam.dart';
+import 'package:book/src/features/noori_naats/presentation/widgets/homePages/homePage.dart';
+import 'package:book/src/features/noori_naats/presentation/widgets/homePages/prayer/prayerPage.dart';
+import 'package:book/src/features/noori_naats/presentation/widgets/homePages/duas/duaPage.dart';
+import 'package:book/src/features/noori_naats/presentation/widgets/homePages/quran/quranPage.dart';
 import 'package:flutter/material.dart';
 import '../utils/colors.dart';
-import 'kalam_list_screen.dart';
 
 class NaatListPage extends StatefulWidget {
   const NaatListPage({super.key});
@@ -12,139 +14,171 @@ class NaatListPage extends StatefulWidget {
 }
 
 class _NaatListPageState extends State<NaatListPage> {
-  final GlobalKey<ScaffoldState> _key = GlobalKey();
+
+  int _currentIndex = 0;
+  final List _navPages = [
+    const HomePage(),
+    const QuranHomePage(),
+    const PrayerPage(),
+    const DuaHomePage(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final heigth = MediaQuery.of(context).size.height;
-    final weigth = MediaQuery.of(context).size.width;
     return Scaffold(
-      key: _key,
-      drawer: _drawer(),
-      //appBar: _buildAppBar(),
-      body: Stack(
+      bottomNavigationBar: _buttomNavBar(context),
+      body: _navPages[_currentIndex],
+    );
+  }
+
+
+  Container _buttomNavBar(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+    double unseletedIconSize = width * 0.05;
+    double seletedIconSize = width * 0.065;
+
+    return Container(
+      height: height * 0.1,
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        // border: Border.all(
+        //   color: yellowColor,
+        // ),
+      ),
+      child: ButtonBar(
+        buttonPadding: EdgeInsets.zero,
+        alignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/homebg1.jpg"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          Positioned(
-            top: heigth * 0.05,
-            width: weigth * 0.2,
-            child: IconButton(
-              onPressed: () {
-                _key.currentState!.openDrawer();
-              },
-              icon: const Icon(
-                Icons.menu_rounded,
-                size: 32,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          Positioned(
-            top: heigth * 0.3,
-            left: weigth * 0.4,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const KalamList(),
-                  ),
-                );
-              },
-              child: const Text(
-                "نعتیں",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: heigth * 0.5,
-            left: weigth * 0.4,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const KalamList(),
-                  ),
-                );
-              },
-              child: const Text(
-                "کتابیں",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  AppBar _buildAppBar() {
-    return AppBar(
-      title: AutoSizeText(
-        "راہِ نجات",
-        style: TextStyle(
-            fontSize: 32, color: blueColor, fontWeight: FontWeight.bold),
-      ),
-      centerTitle: true,
-      elevation: 0,
-      backgroundColor: const Color.fromARGB(100, 9, 9, 121),
-    );
-  }
-
-  Drawer _drawer() {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: blueColor,
-            ),
-            child: Image(
-              image: AssetImage("assets/images/logo_animated.gif"),
-            ),
-          ),
-          ListTile(
-            leading: Icon(
-              Icons.account_circle,
-              color: blueColor,
-            ),
-            title: Text('Profile'),
-          ),
-          ListTile(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => FavouriteKalam(),
-                ),
+          TextButton.icon(
+            onPressed: () {
+              setState(
+                () {
+                  _currentIndex = 0;
+                },
               );
             },
-            leading: Icon(
-              Icons.favorite,
-              color: Colors.red,
-            ),
-            title: Text('Favourite'),
+            icon: _currentIndex == 0
+                ? Icon(
+                    Icons.home,
+                    color: blueColor,
+                    size: seletedIconSize,
+                  )
+                : Icon(
+                    Icons.home_outlined,
+                    color: blueColor,
+                    size: unseletedIconSize,
+                  ),
+            label: _currentIndex == 0
+                ? AutoSizeText(
+                    "Home",
+                    style: TextStyle(
+                      color: blueColor,
+                    ),
+                  )
+                : AutoSizeText(
+                    "Home",
+                    style: TextStyle(
+                      color: blueColor,
+                    ),
+                  ),
           ),
-          ListTile(
-            leading: Icon(
-              Icons.settings,
-              color: blueColor,
-            ),
-            title: Text('Settings'),
+          TextButton.icon(
+            onPressed: () {
+              setState(
+                () {
+                  _currentIndex = 1;
+                },
+              );
+            },
+            icon: _currentIndex == 1
+                ? Icon(
+                    Icons.book_rounded,
+                    color: blueColor,
+                    size: seletedIconSize,
+                  )
+                : Icon(
+                    Icons.book_outlined,
+                    color: blueColor,
+                    size: unseletedIconSize,
+                  ),
+            label: _currentIndex == 1
+                ? AutoSizeText(
+                    "Quran",
+                    style: TextStyle(
+                      color: blueColor,
+                    ),
+                  )
+                : AutoSizeText(
+                    "Quran",
+                    style: TextStyle(
+                      color: blueColor,
+                    ),
+                  ),
+          ),
+          TextButton.icon(
+            onPressed: () {
+              setState(() {
+                _currentIndex = 2;
+              });
+            },
+            icon: _currentIndex == 2
+                ? Icon(
+                    Icons.mosque_rounded,
+                    color: blueColor,
+                    size: seletedIconSize,
+                  )
+                : Icon(
+                    Icons.mosque_outlined,
+                    color: blueColor,
+                    size: unseletedIconSize,
+                  ),
+            label: _currentIndex == 2
+                ? AutoSizeText(
+                    "Prayer",
+                    style: TextStyle(
+                      color: blueColor,
+                    ),
+                  )
+                : AutoSizeText(
+                    "Prayer",
+                    style: TextStyle(
+                      color: blueColor,
+                    ),
+                  ),
+          ),
+          TextButton.icon(
+            onPressed: () {
+              setState(
+                () {
+                  _currentIndex = 3;
+                },
+              );
+            },
+            icon: _currentIndex == 3
+                ? Icon(
+                    Icons.health_and_safety,
+                    color: blueColor,
+                    size: seletedIconSize,
+                  )
+                : Icon(
+                    Icons.health_and_safety_outlined,
+                    color: blueColor,
+                    size: unseletedIconSize,
+                  ),
+            label: _currentIndex == 3
+                ? AutoSizeText(
+                    "Duas",
+                    style: TextStyle(
+                      color: blueColor,
+                    ),
+                  )
+                : AutoSizeText(
+                    "Duas",
+                    style: TextStyle(
+                      color: blueColor,
+                    ),
+                  ),
           ),
         ],
       ),

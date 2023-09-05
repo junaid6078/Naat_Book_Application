@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:book/src/features/noori_naats/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../domain/hamd/hamdDomain.dart';
@@ -15,6 +16,8 @@ class HamdList extends StatefulWidget {
 class _HamdListState extends State<HamdList> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     List<Hamd> hamdlist = [];
     Future<List<Hamd>> getData() async {
       hamdlist = await HamdRepositoryImpl(context).getAllHamds();
@@ -22,7 +25,7 @@ class _HamdListState extends State<HamdList> {
     }
 
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      backgroundColor: blueColor,
       body: SafeArea(
         child: FutureBuilder(
           future: getData(),
@@ -32,13 +35,13 @@ class _HamdListState extends State<HamdList> {
                 child: CircularProgressIndicator(),
               );
             } else {
-              return ListView.separated(
+              return ListView.builder(
                 itemCount: hamdlist.length,
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(
-                        MaterialPageRoute(
+                        CupertinoPageRoute(
                           builder: (context) => NooriNaatsApp(
                             hamdlist[index].type.toString(),
                             hamdlist[index].subject.toString(),
@@ -49,23 +52,52 @@ class _HamdListState extends State<HamdList> {
                       );
                     },
                     child: Container(
-                      color: Colors.transparent,
-                      padding: const EdgeInsets.all(2.0),
-                      margin: const EdgeInsets.all(2.0),
-                      child: AutoSizeText(
-                        hamdlist[index].lines.first,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Color.fromARGB(255, 26, 30, 50),
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.right,
+                      margin: EdgeInsets.fromLTRB(16, 8, 16, 4),
+                      padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
+                      height: height * 0.05,
+                      width: width * 1,
+                      decoration: BoxDecoration(
+                        color: backgroundColor,
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                            child: AutoSizeText(
+                              maxLines: 1,
+                              overflow: TextOverflow.clip,
+                              textAlign: TextAlign.right,
+                              hamdlist[index].lines.first,
+                              style: TextStyle(
+                                color: blueColor,
+                                fontSize: width * 0.04,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            height: height * 0.03,
+                            width: width * 0.1,
+                            decoration: BoxDecoration(
+                              color: blueColor,
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            child: Center(
+                              child: Text(
+                                (index + 1).toString(),
+                                style: TextStyle(
+                                  color: yellowColor,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   );
                 },
-                separatorBuilder: (BuildContext context, int index) =>
-                    Divider(color: Colors.blueGrey, thickness: 1),
               );
             }
           },

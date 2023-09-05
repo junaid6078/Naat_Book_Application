@@ -38,6 +38,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   auto_size_text: 3.0.0
   video_player: 2.0.0
+  flutter_svg: ^1.1.6
+  quran: ^1.2.2
+  just_audio: ^0.9.34
+  flutter_adaptive_scaffold: ^0.1.7+1
+  modal_bottom_sheet: ^2.1.2
+
 
 dev_dependencies:
   flutter_test:
@@ -64,18 +70,13 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/data.json
+    - assets/hamd.json
+    - assets/naat.json
+    - assets/manqabat.json
+    - assets/salam.json
     - assets/aqaid.pdf
-    - assets/images/page_background.jpg
-    - assets/images/splash_image.jpg
     - assets/videos/splash_video.mp4
-    - assets/images/logo.png
-    - assets/images/32.png
-    - assets/images/drood.png
-    - assets/images/logo_animated.gif
-    - assets/images/WhatsApp Image 2022-06-27 at 11.20.02 PM.jpeg
-    - assets/images/kalambg.jpg
-    - assets/images/homebg.jpg
-    - assets/images/homebg1.jpg
+    - assets/images/
 
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Noori Naats',
+      title: 'Raahe Nijaat Naats',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // home: PdfBook(title: "Noori Naats",),x
       debugShowCheckedModeBanner: false,
       routes: {
         "/": (BuildContext context) => SplashScreen(),

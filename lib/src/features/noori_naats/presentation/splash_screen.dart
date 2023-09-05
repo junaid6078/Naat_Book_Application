@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:book/src/features/noori_naats/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -32,6 +33,7 @@ class ImageBackground extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
+            color: blueColor,
             image: DecorationImage(
               image: AssetImage("assets/images/logo.png"),
             ),

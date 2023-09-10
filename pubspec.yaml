@@ -43,6 +43,10 @@ dependencies:
   just_audio: ^0.9.34
   flutter_adaptive_scaffold: ^0.1.7+1
   modal_bottom_sheet: ^2.1.2
+  flutter_islamic_icons: ^1.0.2
+  prayers_times: ^0.0.2
+  geolocator: ^10.0.1
+  geocoding: ^2.0.4
 
 
 dev_dependencies:

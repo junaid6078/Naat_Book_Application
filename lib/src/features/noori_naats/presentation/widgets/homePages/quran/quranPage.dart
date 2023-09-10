@@ -33,23 +33,23 @@ class _QuranHomePageState extends State<QuranHomePage> {
       child: Scaffold(
         backgroundColor: backgroundColor,
         appBar: AppBar(
-          leading: Container(
-            margin: EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: blueColor,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: BackButton(
-              color: yellowColor,
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => NaatListPage(),
-                  ),
-                );
-              },
-            ),
-          ),
+          // leading: Container(
+          //   margin: EdgeInsets.all(8),
+          //   decoration: BoxDecoration(
+          //     color: blueColor,
+          //     borderRadius: BorderRadius.circular(12),
+          //   ),
+          //   child: BackButton(
+          //     color: yellowColor,
+          //     onPressed: () {
+          //       Navigator.of(context).pushReplacement(
+          //         MaterialPageRoute(
+          //           builder: (context) => NaatListPage(),
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
           elevation: 0,
           backgroundColor: backgroundColor,
           title: Text(

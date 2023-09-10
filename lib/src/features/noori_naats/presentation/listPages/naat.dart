@@ -57,7 +57,7 @@ class _NaatListState extends State<NaatList> {
                     child: Container(
                       margin: EdgeInsets.fromLTRB(16, 8, 16, 4),
                       padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                      height: height * 0.05,
+                      height: height * 0.06,
                       width: width * 1,
                       decoration: BoxDecoration(
                         color: backgroundColor,
@@ -67,16 +67,19 @@ class _NaatListState extends State<NaatList> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                            child: AutoSizeText(
-                              maxLines: 1,
-                              overflow: TextOverflow.clip,
-                              textAlign: TextAlign.right,
-                              naatlist[index].lines.first,
-                              style: TextStyle(
-                                color: blueColor,
-                                fontSize: width * 0.04,
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                              child: AutoSizeText(
+                                maxLines: 1,
+                                overflow: TextOverflow.clip,
+                                textAlign: TextAlign.right,
+                                naatlist[index].lines.first,
+                                style: TextStyle(
+                                  color: blueColor,
+                                  fontSize: width * 0.05,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),

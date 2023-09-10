@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:quran/quran.dart' as quran;
 import '../../../../../utils/colors.dart';
 
-class QuranPageView extends StatefulWidget {
+class SurahPageView extends StatefulWidget {
   final int surahNumber;
-  const QuranPageView({Key? key, required this.surahNumber});
+  const SurahPageView({super.key, required this.surahNumber});
 
   @override
-  State<QuranPageView> createState() => _QuranPageViewState();
+  State<SurahPageView> createState() => _SurahPageViewState();
 }
 
-class _QuranPageViewState extends State<QuranPageView> {
+class _SurahPageViewState extends State<SurahPageView> {
   @override
   Widget build(BuildContext context) {
     final heigth = MediaQuery.of(context).size.height;
@@ -22,7 +22,7 @@ class _QuranPageViewState extends State<QuranPageView> {
       appBar: AppBar(
         elevation: 0,
         leading: Container(
-          margin: EdgeInsets.all(8),
+          margin: const EdgeInsets.all(8),
           height: heigth * 0.1,
           width: width * 0.1,
           decoration: BoxDecoration(
@@ -63,7 +63,7 @@ class _QuranPageViewState extends State<QuranPageView> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Column(
           children: [
             Container(
@@ -87,7 +87,7 @@ class _QuranPageViewState extends State<QuranPageView> {
                           quran.getSurahName(widget.surahNumber + 1),
                           style: TextStyle(
                             color: lightBlue,
-                            fontSize: 36,
+                            fontSize: width * 0.1,
                           ),
                         ),
                         const SizedBox(
@@ -96,9 +96,9 @@ class _QuranPageViewState extends State<QuranPageView> {
                         AutoSizeText(
                           quran.getSurahNameEnglish(widget.surahNumber + 1),
                           style: TextStyle(
-                            color: lightBlue,
-                            fontSize: heigth * 0.03,
-                          ),
+                              color: lightBlue,
+                              fontSize: width * 0.06,
+                              fontStyle: FontStyle.italic),
                         ),
                         const SizedBox(
                           height: 5,
@@ -160,29 +160,50 @@ class _QuranPageViewState extends State<QuranPageView> {
                 ],
               ),
             ),
-            Container(
-              margin: const EdgeInsets.fromLTRB(12, 8, 12, 8),
-              height: heigth * 0.05,
-              width: width * 0.7,
-              decoration: BoxDecoration(
-                color: yellowColor,
+            Expanded(
+              child: ListView.builder(
+                itemCount: quran.getVerseCount(widget.surahNumber + 1),
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    height: heigth * 0.5,
+                    width: width * 1,
+                    padding: EdgeInsets.fromLTRB(24, 24, 24, 24),
+                    margin: EdgeInsets.fromLTRB(12, 8, 12, 4),
+                    color: Colors.white,
+                    child: Center(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            AutoSizeText(
+                              quran.getVerse(
+                                  widget.surahNumber + 1, index + 1,
+                                  verseEndSymbol: true),
+                              style: TextStyle(
+                                fontSize: width * 0.05,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: heigth * 0.03,
+                            ),
+                            AutoSizeText(
+                              quran.getVerseTranslation(
+                                widget.surahNumber + 1,
+                                index + 1,
+                              ),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: heigth * 0.015),
+                              overflow: TextOverflow.clip,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
-              child: AutoSizeText(
-                textAlign: TextAlign.center,
-                quran.basmala,
-                style: TextStyle(
-                  fontSize: width * 0.06,
-                ),
-              ),
-            ),
-            Container(
-              height: heigth * 0.3,
-              width: width * 1,
-              margin: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-              // decoration: BoxDecoration(
-              //   color: yellowColor,
-              // ),
-              child: Card(),
             ),
           ],
         ),

@@ -1,5 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:book/src/features/noori_naats/presentation/widgets/homePages/quran/quran_page_view/quran_page_view.dart';
+import 'package:book/src/features/noori_naats/presentation/widgets/homePages/quran/quran_page_view/surah_page_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quran/quran.dart' as quran;
@@ -29,7 +29,7 @@ class _SurahViewPageState extends State<SurahViewPage> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => QuranPageView(
+                      builder: (context) => SurahPageView(
                         //surahTilte: quran.getSurahName(index + 1),
                         surahNumber: index,
                       ),

@@ -57,7 +57,7 @@ class _ManqabatListState extends State<ManqabatList> {
                     child: Container(
                       margin: EdgeInsets.fromLTRB(16, 8, 16, 4),
                       padding: EdgeInsets.fromLTRB(0, 0, 8, 0),
-                      height: height * 0.05,
+                      height: height * 0.06,
                       width: width * 1,
                       decoration: BoxDecoration(
                         color: backgroundColor,
@@ -67,24 +67,20 @@ class _ManqabatListState extends State<ManqabatList> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          // Padding(
-                          //   padding: const EdgeInsets.fromLTRB(12, 0, 0, 0),
-                          //   child: Icon(
-                          //     Icons.favorite_border,
-                          //     color: blueColor,
-                          //   ),
-                          // ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                            child: AutoSizeText(
-                              softWrap: true,
-                              maxLines: 1,
-                              overflow: TextOverflow.fade,
-                              textAlign: TextAlign.right,
-                              manqabatlist[index].lines.first,
-                              style: TextStyle(
-                                color: blueColor,
-                                fontSize: width * 0.04,
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                              child: AutoSizeText(
+                                softWrap: true,
+                                maxLines: 1,
+                                overflow: TextOverflow.fade,
+                                textAlign: TextAlign.right,
+                                manqabatlist[index].lines.first,
+                                style: TextStyle(
+                                  color: blueColor,
+                                  fontSize: width * 0.05,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
